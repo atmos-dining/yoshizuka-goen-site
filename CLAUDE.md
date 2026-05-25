@@ -83,3 +83,18 @@
 - 全ページの G-XXXXXXXXXX を実際のGA4プロパティIDに置き換える
 - 対象ファイル: index.html, menu.html, drink.html, course.html, blog/index.html, blog/posts/post.html
 - コンバージョン設定: phone_click, reservation_click
+
+## ドメイン・DNS設定
+- **ドメイン:** yoshizuka-goen.com（取得済み）
+- **DNS管理:** Xserver（全サイト共通）
+- **CNAME ファイル:** リポジトリルートに作成済み（内容: `yoshizuka-goen.com`）
+- **GitHub Pages カスタムドメイン:** Settings → Pages → Custom domain に `yoshizuka-goen.com` を入力
+
+### Xserver DNS に追加するレコード
+| タイプ | ホスト名 | 内容 |
+|------|--------|------|
+| A | @ | 185.199.108.153 |
+| A | @ | 185.199.109.153 |
+| A | @ | 185.199.110.153 |
+| A | @ | 185.199.111.153 |
+| CNAME | www | atmos-dining.github.io |
