@@ -73,6 +73,10 @@
 </style>
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="吉塚 ごえん">
+<meta property="og:title" content="ブログ｜吉塚 ごえん">
+<meta property="og:description" content="吉塚 ごえんのブログ記事。">
+<meta property="og:url" content="https://yoshizuka-goen.com/blog/">
+<meta property="og:image" content="https://yoshizuka-goen.com/images/hero-goen.jpg">
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -93,7 +97,7 @@
     <nav class="post-breadcrumb">
       <a href="../../">トップ</a>
       <span>/</span>
-      <a href="../index.html">ブログ・お知らせ</a>
+      <a href="../">ブログ・お知らせ</a>
       <span>/</span>
       <span id="bc-title">記事</span>
     </nav>
@@ -126,7 +130,7 @@
   }
 
   if (!slug) {
-    contentEl.innerHTML = '<p>記事が見つかりませんでした。<br><a href="../index.html" style="text-decoration:underline">ブログ一覧へ</a></p>';
+    contentEl.innerHTML = '<p>記事が見つかりませんでした。<br><a href="../" style="text-decoration:underline">ブログ一覧へ</a></p>';
     return;
   }
 
@@ -139,8 +143,11 @@
     if (!post) throw new Error('記事が見つかりません: ' + slug);
 
     document.title = `${post.title}｜吉塚 ごえん`;
-    document.querySelector('meta[name="description"]')
-      ?.setAttribute('content', post.excerpt || '');
+    const pageUrl = `https://yoshizuka-goen.com/blog/posts/post?slug=${encodeURIComponent(slug)}`;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', post.excerpt || '');
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', `${post.title}｜吉塚 ごえん`);
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', post.excerpt || '');
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', pageUrl);
     if (bcTitle) bcTitle.textContent = post.title;
 
     let imgSrc = '';
@@ -149,6 +156,27 @@
         .replace(/^\.\//, '../')
         .replace(/^\.\.\//, '../../');
     }
+
+    // OG画像・BlogPosting構造化データを動的更新
+    const imgAbsUrl = imgSrc
+      ? 'https://yoshizuka-goen.com/' + imgSrc.replace(/^\.\.\/\.\.\//, '')
+      : 'https://yoshizuka-goen.com/images/hero-goen.jpg';
+    document.querySelector('meta[property="og:image"]')?.setAttribute('content', imgAbsUrl);
+    const ldEl = document.createElement('script');
+    ldEl.type = 'application/ld+json';
+    ldEl.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": post.title,
+      "description": post.excerpt || '',
+      "datePublished": post.date || '',
+      "image": imgAbsUrl,
+      "url": pageUrl,
+      "author": {"@type": "Organization", "name": "吉塚 ごえん"},
+      "publisher": {"@type": "Organization", "name": "吉塚 ごえん", "url": "https://yoshizuka-goen.com/"},
+      "mainEntityOfPage": {"@type": "WebPage", "@id": pageUrl}
+    });
+    document.head.appendChild(ldEl);
 
     const imgHtml = imgSrc
       ? `<img src="${esc(imgSrc)}" alt="${esc(post.title)}" class="post-hero" loading="lazy">`
@@ -165,14 +193,14 @@
       ${imgHtml}
       <div class="post-body">${bodyHtml}</div>
       <div class="post-footer">
-        <a href="../index.html">← ブログ一覧へ戻る</a>
+        <a href="../">← ブログ一覧へ戻る</a>
         <span>|</span>
         <a href="../../">トップへ</a>
       </div>
     `;
 
   } catch(e) {
-    contentEl.innerHTML = `<p>エラー：${esc(e.message)}<br><a href="../index.html" style="text-decoration:underline">ブログ一覧へ</a></p>`;
+    contentEl.innerHTML = `<p>エラー：${esc(e.message)}<br><a href="../" style="text-decoration:underline">ブログ一覧へ</a></p>`;
     console.error(e);
   }
 })();

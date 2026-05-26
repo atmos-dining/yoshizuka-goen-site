@@ -30,12 +30,15 @@
   "@context": "https://schema.org",
   "@type": "Restaurant",
   "name": "吉塚 ごえん",
+  "alternateName": "魚肴酒場 吉塚ごえん",
+  "description": "吉塚駅より徒歩3分の魚肴酒場。対馬直送の本マグロ・名物大きい唐揚げ・旬の天ぷらが自慢。宴会コース4,000円〜飲み放題付き・2名〜最大50名様対応。年中無休16時〜深夜0時。",
   "image": "https://yoshizuka-goen.com/images/hero-goen.jpg",
   "url": "https://yoshizuka-goen.com/",
   "telephone": "092-292-0063",
-  "servesCuisine": ["居酒屋","海鮮","天ぷら","宴会"],
+  "servesCuisine": ["居酒屋","海鮮料理","天ぷら","魚肴"],
   "priceRange": "￥￥",
   "hasMenu": "https://yoshizuka-goen.com/menu.html",
+  "menu": "https://yoshizuka-goen.com/menu.html",
   "acceptsReservations": true,
   "currenciesAccepted": "JPY",
   "paymentAccepted": "現金, クレジットカード, PayPay",
@@ -48,6 +51,22 @@
     "postalCode": "812-0045",
     "addressCountry": "JP"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 33.5974,
+    "longitude": 130.4261
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "福岡市"
+  },
+  "amenityFeature": [
+    {"@type": "LocationFeatureSpecification", "name": "禁煙席", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "座敷席", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "カウンター席", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "貸切対応", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "飲み放題", "value": true}
+  ],
   "openingHoursSpecification": [{
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
@@ -78,7 +97,7 @@
       "name": "吉塚 ごえんはどこにありますか？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "福岡県福岡市博多区東公園2-23にあります。吉塚駅より徒歩3分です。"
+        "text": "福岡県福岡市博多区東公園2-23にあります。吉塚駅より徒歩3分（約163m）です。"
       }
     },
     {
@@ -94,7 +113,7 @@
       "name": "宴会コースはありますか？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "はい。4,000円〜の宴会コース（飲み放題付き）をご用意しています。最大50名様まで対応しています。"
+        "text": "はい。4,000円〜の宴会コース（飲み放題付き）を4プランご用意しています。最大50名様まで対応しています。"
       }
     },
     {
@@ -110,7 +129,7 @@
       "name": "名物・おすすめメニューは何ですか？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "対馬直送の本マグロ盛り合わせ、吉塚最大サイズの大きな唐揚げ、白味噌の炊き餃子、もつ煮、旬の天ぷらが人気です。"
+        "text": "対馬直送の本マグロ盛り合わせ（979円〜・5種食べ比べ）、吉塚最大サイズの大きな唐揚げ（1,089円）、12時間煮込んだもつ煮込み（539円）、旬の天ぷらが人気です。"
       }
     },
     {
@@ -126,7 +145,39 @@
       "name": "日本酒・焼酎は揃っていますか？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "はい、日本酒・焼酎を豊富にご用意しています。魚料理や一品料理に合わせた厳選ラインナップをお楽しみください。"
+        "text": "はい。日本酒はグラス550円〜、焼酎は芋・麦・米の定番から赤兎馬・山ねこなどこだわり銘柄まで15種以上ご用意しています。クラフトサワーも11種揃っています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "吉塚でおすすめの居酒屋・魚料理店はどこですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "吉塚 ごえん（福岡市博多区東公園2-23）は、対馬直送の本マグロや旬の天ぷらが自慢の魚肴酒場です。吉塚駅より徒歩3分、年中無休16時〜深夜0時営業。宴会コース4,000円〜。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "一人でも入れますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、1階にカウンター席がございますので、お一人様も歓迎しています。ひとり飲みのお客様も多くご来店いただいています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "支払い方法は何が使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "現金・クレジットカード・PayPayがご利用いただけます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "駐車場はありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "店舗専用の駐車場はございません。お近くのコインパーキングをご利用ください。公共交通機関でのご来店をおすすめします（吉塚駅より徒歩3分）。"
       }
     }
   ]
@@ -145,6 +196,20 @@
       "item": "https://yoshizuka-goen.com/"
     }
   ]
+}
+</script>
+
+<!-- Speakable -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "吉塚 ごえん 公式サイト",
+  "url": "https://yoshizuka-goen.com/",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".hero-catch", ".hero-badge", ".concept-text p"]
+  }
 }
 </script>
 
