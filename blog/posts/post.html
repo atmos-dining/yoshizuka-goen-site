@@ -75,6 +75,7 @@
 <meta property="og:site_name" content="吉塚 ごえん">
 <meta property="og:title" content="ブログ｜吉塚 ごえん">
 <meta property="og:description" content="吉塚 ごえんのブログ記事。">
+<link rel="canonical" href="https://yoshizuka-goen.com/blog/">
 <meta property="og:url" content="https://yoshizuka-goen.com/blog/">
 <meta property="og:image" content="https://yoshizuka-goen.com/images/hero-goen.jpg">
 
@@ -135,22 +136,17 @@
   }
 
   try {
-    // 個別ファイル（posts_data/）を優先、なければ posts.json にフォールバック
-    let post = null;
-    const individualRes = await fetch(`../posts_data/${encodeURIComponent(slug)}.json`, { cache: 'no-store' });
-    if (individualRes.ok) {
-      post = await individualRes.json();
-    } else {
-      const res = await fetch('../posts.json', { cache: 'no-store' });
-      if (!res.ok) throw new Error('記事データの読み込みエラー');
-      const data = await res.json();
-      const posts = data.posts ?? data;
-      post = posts.find(p => p.slug === slug);
-    }
+    // post.html は posts.json のみを参照する（CLAUDE.md のルール）
+    const res = await fetch('../posts.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('記事データの読み込みエラー');
+    const data = await res.json();
+    const posts = data.posts ?? data;
+    const post = posts.find(p => p.slug === slug);
     if (!post) throw new Error('記事が見つかりません: ' + slug);
 
     document.title = `${post.title}｜吉塚 ごえん`;
     const pageUrl = `https://yoshizuka-goen.com/blog/posts/post?slug=${encodeURIComponent(slug)}`;
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', pageUrl);
     document.querySelector('meta[name="description"]')?.setAttribute('content', post.excerpt || '');
     document.querySelector('meta[property="og:title"]')?.setAttribute('content', `${post.title}｜吉塚 ごえん`);
     document.querySelector('meta[property="og:description"]')?.setAttribute('content', post.excerpt || '');
