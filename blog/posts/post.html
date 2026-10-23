@@ -87,6 +87,7 @@
   gtag('js', new Date());
   gtag('config', 'G-EHQF1C3M8V');
 </script>
+<script src="../../vendor/blog-security.js"></script>
 </head>
 
 <body data-page="blog">
@@ -112,7 +113,8 @@
   <a href="#top" class="page-top" aria-label="ページの先頭へ"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></a>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="../../vendor/dompurify/purify.min.js"></script>
+<script src="../../vendor/marked/marked.umd.js"></script>
 <script src="../../common.js"></script>
 <script>
 (async () => {
@@ -182,7 +184,7 @@
     document.head.appendChild(ldEl);
 
     const imgHtml = imgSrc
-      ? `<img src="${esc(imgSrc)}" alt="${esc(post.title)}" class="post-hero" loading="lazy">`
+      ? `<img src="${esc(BlogSecurity.imageURL(imgSrc))}" alt="${esc(post.title)}" class="post-hero" loading="lazy">`
       : '';
 
     const rawBody = post.body || `<p>${esc(post.excerpt)}</p>`;
@@ -194,7 +196,7 @@
       <p class="post-date">${fmtDate(post.date)}</p>
       <h1 class="post-title">${esc(post.title)}</h1>
       ${imgHtml}
-      <div class="post-body">${bodyHtml}</div>
+      <div class="post-body">${BlogSecurity.sanitizeHTML(bodyHtml)}</div>
       <div class="post-footer">
         <a href="../">← ブログ一覧へ戻る</a>
         <span>|</span>
